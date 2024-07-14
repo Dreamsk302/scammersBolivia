@@ -3,86 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alerta de Estafadores</title>
+    <title>Lista de Estafadores (Bolivia)</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet"> <!-- Enlace a Google Fonts -->
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f8f8f8;
-            color: #333;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 1em;
-            text-align: center;
-        }
-        .container {
-            padding: 2em;
-        }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>¡Alerta de Estafadores!</h1>
-    </header>
-    <div class="container">
-        <p>Nos dedicamos a exponer y denunciar a aquellos que se dedican a engañar y estafar a personas inocentes. Nuestra misión es proteger a la comunidad identificando y compartiendo información sobre estafadores, sus métodos y tácticas.</p>
-        <p><strong>¿Has sido víctima de una estafa?</strong> Comparte tu historia con nosotros y ayúdanos a prevenir que otros caigan en las mismas trampas. Juntos, podemos hacer de nuestro entorno un lugar más seguro.</p>
-        <p><strong>¡Únete a nuestra lucha contra el fraude!</strong> Sigue nuestras actualizaciones y mantente informado sobre las últimas estafas y cómo evitarlas. La información es poder, y juntos podemos combatir a los estafadores y proteger a nuestra comunidad.</p>
-    </div>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buscador</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f8f8;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Roboto', sans-serif; /* Cambiar la fuente */
+            background-color: #B5B7B7; /* Cambiar el color de fondo */
+            color: #AB957C; /* Cambiar el color del texto */
+            padding: 20px;
         }
         .search-container {
             text-align: center;
-            background-color: white;
-            padding: 2em;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         input[type="text"] {
-            width: 80%;
-            padding: 0.5em;
-            margin-right: 0.5em;
-            border: 1px solid #ccc;
-            border-radius: 4px;
+            width: 300px;
+            padding: 10px;
+            border: 1px solid #888; /* Cambiar el color del borde */
+            border-radius: 9px;
+            font-size: 16px; /* Cambiar el tamaño de la fuente */
         }
-        input[type="submit"] {
-            padding: 0.5em 1em;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
+        .result-list {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
         }
-        input[type="submit"]:hover {
-            background-color: #45a049;
+        .result-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ccc; /* Cambiar el color del borde inferior */
+            background-color: #fff; /* Cambiar el color de fondo de los elementos de la lista */
         }
     </style>
 </head>
 <body>
     <div class="search-container">
-        <h1>Buscador</h1>
-        <form action="/resultados-de-busqueda" method="GET">
-            <input type="text" name="q" placeholder="Buscar...">
-            <input type="submit" value="Buscar">
-        </form>
+        <h1>Lista de Estafadores (Bolivia)</h1>
+        <input type="text" id="searchInput" placeholder="Buscar nombre..." onkeyup="searchNames()">
     </div>
+    <ul id="resultList" class="result-list">
+        <!-- Los nombres se mostrarán aquí -->
+    </ul>
+
+    <script>
+        // Lista de nombres
+        const names = [
+            "Juan Pérez",
+            "María García",
+            "Carlos Hernández",
+            "Laura Fernández",
+            "Pedro Martínez",
+            "Ana López",
+            "Jorge González",
+            "Marta Rodríguez",
+            "Luis Sánchez",
+            "Isabel Díaz"
+        ];
+
+        // Mostrar todos los nombres inicialmente
+        const resultList = document.getElementById('resultList');
+        names.forEach(name => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            resultList.appendChild(li);
+        });
+
+        function searchNames() {
+            const input = document.getElementById('searchInput').value.toLowerCase();
+            const resultList = document.getElementById('resultList');
+            resultList.innerHTML = '';
+
+            // Filtrar la lista de nombres
+            const filteredNames = names.filter(name => name.toLowerCase().includes(input));
+
+            // Mostrar resultados
+            filteredNames.forEach(name => {
+                const li = document.createElement('li');
+                li.textContent = name;
+                resultList.appendChild(li);
+            });
+
+            // Si no hay resultados
+            if (filteredNames.length === 0) {
+                const li = document.createElement('li');
+                li.textContent = 'No se encontraron datos';
+                resultList.appendChild(li);
+            }
+        }
+    </script>
 </body>
 </html>
